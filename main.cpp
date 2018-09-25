@@ -2,32 +2,28 @@
 #include <stdlib.h>
 #include <string.h>
 
-void noiHoVaTen(char ho[], char ten[]) {
-    printf("Do dai cua ho: %d\n", strlen(ho));
-    int doDaiHo = strlen(ho);
-    printf("Do dai cua ho: ");
-    int doDaiTen = strlen(ten);
-    int tong = doDaiHo + doDaiTen;
-    printf("Do dai ten la: %d\n", tong);
-    tong++;
-    char hovaten[tong];
-    strcpy(hovaten, ho);
-    strcat(hovaten, " ");
-    strcat(hovaten, ten);
-    printf("%s", hovaten);
-}
+struct conHeo {
+    char ten_con_heo[20];
+    int tuoi_con_heo;
+    int can_nang;
+};
 
 int main() {
-    char ho[5], ten[5];
-    printf("Vui long nhap ho cua ban: ");
-    fgets(ho, 5, stdin);
-    puts(ho);
-    if (!strchr(ho, '\n')) {
-        while (fgetc(stdin) != '\n');
-    }
-    printf("Vui long nhap ten cua ban: ");
-    fgets(ten, 5, stdin);
-    puts(ten);
-    noiHoVaTen(ho, ten);
+    struct conHeo conHeo1;
+    strcpy(conHeo1.ten_con_heo, "Pink");
+    printf("Tên con heo là: %s\n", conHeo1.ten_con_heo);
+    conHeo1.tuoi_con_heo = 12;
+    conHeo1.can_nang = 130;
+    printf("Vui lòng nhập tên con lợn: ");
+    fgets(conHeo1.ten_con_heo, 20, stdin);
+//    puts(conHeo1.ten_con_heo);
+    printf("Tên con heo là: %s\n", conHeo1.ten_con_heo);
+//    getchar; để dừng nhập cái khác
+    printf("Vui lòng nhập tuổi con heo: ");
+    scanf("%d", &conHeo1.tuoi_con_heo);
+    printf("Tuổi con heo là: %d tháng\n", conHeo1.tuoi_con_heo);
+    printf("Vui lòng nhập cân nặng con heo: ");
+    scanf("%d", &conHeo1.ten_con_heo);
+    printf("Cân nặng con heo là: %d kg\n", conHeo1.can_nang);
     return 0;
 }
