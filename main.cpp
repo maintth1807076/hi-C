@@ -1,53 +1,30 @@
-#include <iostream>
+#include <stdio.h>
+#include <string.h>
 
-int tonghaiso(int a, int b) {
-    return a + b;
-}
-
-int hieuhaiso(int a, int b) {
-    return a - b;
-}
-
-int tichhaiso(int a, int b) {
-    return a * b;
-}
-
-float chiahaiso(int a, int b) {
-    if (b == 0) {
-        printf("khong the chia cho 0");
-        exit(-1);
-    } else {
-        return (float) a / b;
-    }
+void noiHoVaTen(char ho[], char ten[]) {
+    printf("Do dai cua ho la: %d\n", strlen(ho));
+    printf("Do dai cua ten la: %d\n", strlen(ten));
+    int dodaiHo = strlen(ho);
+    int dodaiTen = strlen(ten);
+    int tong = dodaiHo + dodaiTen;
+    printf("Do dai cua ca ho va ten la %d\n", tong);
+    tong++;
+    char hovaten[tong];
+    strcat(hovaten, ho);
+    strcat(hovaten, " ");
+    strcat(hovaten, ten);
+    printf("%s", hovaten);
 }
 
 int main() {
-    int a;
-    int b;
-    printf("nhap so thu nhat ");
-    scanf("%d", &a);
-    printf("nhap so thu hai ");
-    scanf("%d", &b);
-    int choice;
-    printf("nhap lua chon ");
-    scanf("%d", &choice);
-    int result;
-    if (choice == 1) {
-        result = tonghaiso(a, b);
-        printf("tong hai so la %d", result);
-    }
-    if (choice == 2) {
-        result = hieuhaiso(a, b);
-        printf("hieu hai so la %d", result);
-    }
-    if (choice == 3) {
-        result = tichhaiso(a, b);
-        printf("tich hai so la %d", result);
-    }
-    if (choice == 4) {
-
-        printf("thuong hai so la %f", chiahaiso(a, b));
-    }
+    char ho[50], ten[50];
+    printf("Vui long nhap ho cua ban: ");
+    gets(ho);
+    // kiểm tra độ dài họ.
+    printf("Vui long nhap ten cua ban: ");
+    gets(ten);
+    // kiểm tra độ dài tên.
+    printf("Ho va ten cua ban la: ");
+    noiHoVaTen(ho, ten);
     return 0;
 }
-
