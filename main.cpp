@@ -2,28 +2,66 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct conHeo {
-    char ten_con_heo[20];
-    int tuoi_con_heo;
-    int can_nang;
-};
+typedef struct {
+    int size1;
+    int size2;
+    int size3;
+} Size;
+
+typedef struct {
+    char city[15];
+    char district[15];
+    Size size;
+} Address;
+
+typedef struct {
+    int id;
+    char name[15];
+    int age;
+    int weight;
+    Address address;
+} Pig;
 
 int main() {
-    struct conHeo conHeo1;
-    strcpy(conHeo1.ten_con_heo, "Pink");
-    printf("Tên con heo là: %s\n", conHeo1.ten_con_heo);
-    conHeo1.tuoi_con_heo = 12;
-    conHeo1.can_nang = 130;
-    printf("Vui lòng nhập tên con lợn: ");
-    fgets(conHeo1.ten_con_heo, 20, stdin);
-//    puts(conHeo1.ten_con_heo);
-    printf("Tên con heo là: %s\n", conHeo1.ten_con_heo);
-//    getchar; để dừng nhập cái khác
-    printf("Vui lòng nhập tuổi con heo: ");
-    scanf("%d", &conHeo1.tuoi_con_heo);
-    printf("Tuổi con heo là: %d tháng\n", conHeo1.tuoi_con_heo);
-    printf("Vui lòng nhập cân nặng con heo: ");
-    scanf("%d", &conHeo1.ten_con_heo);
-    printf("Cân nặng con heo là: %d kg\n", conHeo1.can_nang);
+    int numberOfPig;
+    printf("Vui lòng nhập số lượng con lợn là: ");
+    scanf("%d", &numberOfPig);
+    Pig conlon[numberOfPig];
+    for (int i = 0; i < numberOfPig; ++i) {
+        printf("Vui lòng nhập mã con lợn thứ %d là: ", i + 1);
+        scanf("%d", &conlon[i].id);
+        fgetc(stdin);
+        printf("Vui lòng nhập tên con lợn thứ %d là: ", i + 1);
+        fgets(conlon[i].name, 15, stdin);
+        printf("Vui lòng nhập tuổi con lợn thứ %d là: ", i + 1);
+        scanf("%d", &conlon[i].age);
+        printf("Vui lòng nhập cân nặng con lợn thứ %d là: ", i + 1);
+        scanf("%d", &conlon[i].weight);
+        printf("Vui lòng nhập số đo vòng 1 con lợn thứ %d là: ", i + 1);
+        scanf("%d", &conlon[i].address.size.size1);
+        printf("Vui lòng nhập số đo vòng 2 con lợn thứ %d là: ", i + 1);
+        scanf("%d", &conlon[i].address.size.size2);
+        printf("Vui lòng nhập số đo vòng 3 con lợn thứ %d là: ", i + 1);
+        scanf("%d", &conlon[i].address.size.size3);
+        fgetc(stdin);
+        printf("Vui lòng nhập thành phố thứ %d là: ", i + 1);
+        fgets(conlon[i].address.city, 15, stdin);
+        if (!strchr(conlon[i].address.city, '\n')) {
+            while (fgetc(stdin) != '\n');
+        }
+        printf("Vui lòng nhập quận huyện thứ %d là: ", i + 1);
+        fgets(conlon[i].address.district, 15, stdin);
+    }
+    for (int j = 0; j < numberOfPig; ++j) {
+        printf("Mã con lợn thứ %d là: %d\n", j + 1, conlon[j].id);
+        printf("Tên con lợn thứ %d là: %s\n", j + 1, conlon[j].name);
+        printf("Tuổi con lợn thứ %d là: %d\n", j + 1, conlon[j].age);
+        printf("Cân nặng con lợn thứ %d là: %d\n", j + 1, conlon[j].weight);
+        printf("Số đo vòng 1 con lợn thứ %d là: %d\n", j + 1, conlon[j].address.size.size1);
+        printf("Số đo vòng 2 con lợn thứ %d là: %d\n", j + 1, conlon[j].address.size.size2);
+        printf("Số đo vòng 3 con lợn thứ %d là: %d\n", j + 1, conlon[j].address.size.size3);
+        printf("Thành phố thứ %d là: %s\n", j + 1, conlon[j].address.city);
+        printf("Quận huyện thứ %d là: %s\n", j + 1, conlon[j].address.district);
+    }
     return 0;
 }
